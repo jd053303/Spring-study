@@ -3,6 +3,8 @@ package hello.Springstudy.service;
 import hello.Springstudy.domain.Member;
 import hello.Springstudy.repository.MemberRepository;
 import hello.Springstudy.repository.MemoryMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
