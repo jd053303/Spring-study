@@ -1,18 +1,18 @@
 package hello.Springstudy;
 
-import hello.Springstudy.repository.JdbcMemberRepository;
-import hello.Springstudy.repository.JdbcTemplateMemberRepository;
-import hello.Springstudy.repository.MemberRepository;
-import hello.Springstudy.repository.MemoryMemberRepository;
+import hello.Springstudy.repository.*;
 import hello.Springstudy.service.MemberService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import javax.persistence.EntityManager;
 import javax.sql.DataSource;
 @Configuration
 public class SpringConfig {
     private final DataSource dataSource;
-    public SpringConfig(DataSource dataSource) {
+    private final EntityManager em;
+    public SpringConfig(DataSource dataSource, EntityManager em) {
         this.dataSource = dataSource;
+        this.em = em;
     }
     @Bean
     public MemberService memberService() {
@@ -22,6 +22,7 @@ public class SpringConfig {
     public MemberRepository memberRepository() {
 // return new MemoryMemberRepository();
 // return new JdbcMemberRepository(dataSource);
-        return new JdbcTemplateMemberRepository(dataSource);
+// return new JdbcTemplateMemberRepository(dataSource);
+        return new JpaMemberRepository(em);
     }
 }
